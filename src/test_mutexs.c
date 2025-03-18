@@ -6,9 +6,11 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:28:19 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/18 16:14:10 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:10:57 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "philo.h"
 
 # include <stdio.h>
 # include <pthread.h>

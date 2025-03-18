@@ -1,21 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 15:40:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/18 17:28:48 by jmeirele         ###   ########.fr       */
+/*   Created: 2025/03/18 16:28:33 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/03/18 17:28:23 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int argc, char **argv)
-{
-	(void)argv;
-	if (argc != 5 && argc != 6)
-		return (write(2, "Invalid number of arguments\n", 28));
-	// ft_validate_and_init();
-}
