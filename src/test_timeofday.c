@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test_timeofday.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 15:40:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/18 15:53:21 by jmeirele         ###   ########.fr       */
+/*   Created: 2025/03/18 16:01:52 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/03/18 16:14:11 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+# include <sys/time.h>
+# include <stdio.h>
 
-int main(int argc, char **argv)
+int main(void)
 {
-	(void)argv;
-	if (argc != 5 && argc != 6)
-		return (write(2, "Invalid number of arguments\n", 28));
-	
+	struct timeval	time;
+	gettimeofday(&time, NULL);
+
+	printf("%ld\n", time.tv_sec);
+	return 0;
 }
