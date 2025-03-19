@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:28:41 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/19 15:45:49 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:24:05 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@
 //============================================================================//
 //                                 MACROS                                     //
 //============================================================================//
+
+# define BLK "\e[0;30m"	// RGB(0, 0, 0)
+# define RED "\e[0;31m"	// RGB(255, 0, 0)
+# define GRN "\e[0;32m"	// RGB(0, 255, 0)
+# define YEL "\e[0;33m"	// RGB(255, 255, 0)
+# define BLU "\e[0;34m"	// RGB(0, 0, 255)
+# define MAG "\e[0;35m"	// RGB(255, 0, 255)
+# define CYN "\e[0;36m"	// RGB(0, 255, 255)
+# define WHT "\e[0;37m"	// RGB(255, 255, 255)
 
 //============================================================================//
 //                                  ENUMS                                     //
@@ -54,6 +63,7 @@ typedef enum e_msg_state
 typedef pthread_mutex_t	t_mutex;
 typedef struct s_philo	t_philo;
 typedef struct s_data	t_data;
+typedef struct timeval	t_time;
 
 typedef struct s_philo
 {
@@ -67,10 +77,10 @@ typedef struct s_philo
 typedef struct s_data
 {
 	int			n_philos;
-	int			start_time;
-	int			time_to_eat;
-	int			time_to_sleep;
-	int			time_to_die;
+	long		start_time;
+	long		time_to_eat;
+	long		time_to_sleep;
+	long		time_to_die;
 	int			must_eat_count;
 	t_mutex		*forks;
 }	t_data;
@@ -83,12 +93,15 @@ typedef struct s_data
 void	ft_validate_and_set(t_data *data, t_philo *philo, char **argv);
 
 /* init.c */
-void	ft_init_srtucts(t_data *data, t_philo *philo);
+void	ft_init_structs(t_data *data, t_philo *philo);
 
 /* utils.c */
 int		ft_is_space(char c);
 int		ft_is_num(char c);
 int		ft_strlen(char *str);
+
+/* time_utils.c */
+long	ft_get_curr_time(void);
 
 /* clean.c */
 void	ft_print_err(char *str, int fd);

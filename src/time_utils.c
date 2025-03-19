@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_timeofday.c                                   :+:      :+:    :+:   */
+/*   time_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 16:01:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/19 17:22:51 by jmeirele         ###   ########.fr       */
+/*   Created: 2025/03/19 17:13:49 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/03/19 17:21:37 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <sys/time.h>
-# include <stdio.h>
+#include "philo.h"
 
-int main(void)
+long	ft_get_curr_time(void)
 {
-	struct timeval	time;
+	t_time	time;
+
 	gettimeofday(&time, NULL);
 
-	printf("%ld\n", time.tv_sec);
-	return 0;
+	return ((time.tv_sec * 1000) + (time.tv_usec * 0.001));
 }

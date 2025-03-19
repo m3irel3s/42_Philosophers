@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:28:33 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/19 15:02:27 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:25:50 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_check_valid_number(char *str);
 static int	ft_validate_argv(char **argv);
-static int	ft_convert_into_nb(char *str);
+static long	ft_convert_into_nb(char *str);
 static long	ft_atol(char *str);
 
 // argv[1] = number_of_philosophers
@@ -27,12 +27,12 @@ void	ft_validate_and_set(t_data *data, t_philo *philo, char **argv)
 {
 	(void)philo;
 	ft_validate_argv(argv);
-	data->n_philos = ft_convert_into_nb(argv[1]);
+	data->n_philos = (int)ft_convert_into_nb(argv[1]);
 	data->time_to_die = ft_convert_into_nb(argv[2]);
 	data->time_to_eat = ft_convert_into_nb(argv[3]);
 	data->time_to_sleep = ft_convert_into_nb(argv[4]);
 	if (argv[5])
-		data->must_eat_count = ft_convert_into_nb(argv[5]);
+		data->must_eat_count = (int)ft_convert_into_nb(argv[5]);
 	else
 		data->must_eat_count = -1;
 	if (data->n_philos < 1 || data->n_philos > 200 || \
@@ -59,7 +59,7 @@ static int	ft_validate_argv(char **argv)
 	return SUCCESS;
 }
 
-static int	ft_convert_into_nb(char *str)
+static long	ft_convert_into_nb(char *str)
 {
 	long	num;
 
@@ -69,7 +69,7 @@ static int	ft_convert_into_nb(char *str)
 		ft_print_err("Number out of limits\n", 2);
 		exit(1);
 	}
-	return (int)num;
+	return num;
 }
 
 static long	ft_atol(char *str)
