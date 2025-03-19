@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 13:47:23 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/19 15:47:37 by jmeirele         ###   ########.fr       */
+/*   Created: 2025/03/19 12:00:52 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/03/19 15:47:43 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	ft_init_philos(t_data *data, t_philo *philo);
-
-void	ft_init_srtucts(t_data *data, t_philo *philo)
+int	ft_is_space(char c)
 {
-	(void)data;
-	ft_init_philos(data, philo);
+	return (c == ' ' || (c >= 9 && c <= 13));
 }
 
-static void	ft_init_philos(t_data *data, t_philo *philo)
+int	ft_is_num(char c)
 {
-	(void)philo;
-	printf("n_philos => %d\n", data->n_philos);
+	return (c >= 48 && c <= 57);
+}
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

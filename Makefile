@@ -15,6 +15,10 @@ INC_PATH    = inc
 HEADERS     = $(addprefix $(INC_PATH)/, philo.h)
 
 SRCS        = $(SRC_PATH)/main.c \
+			$(SRC_PATH)/parse.c \
+			$(SRC_PATH)/init.c \
+			$(SRC_PATH)/utils.c \
+			$(SRC_PATH)/clean.c \
 
 OBJS        = $(SRCS:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
 
