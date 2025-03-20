@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:28:41 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/20 12:24:11 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:00:01 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <limits.h>
+# include <stdbool.h>
 
 //============================================================================//
 //                                 MACROS                                     //
@@ -37,11 +38,11 @@
 # define CYN "\e[0;36m"	// RGB(0, 255, 255)
 # define WHT "\e[0;37m"	// RGB(255, 255, 255)
 
-# define TAKEN_FORK_MSG "%ld %d has taken fork"
-# define EATING_MSG "%ld %d is eating"
-# define SLEEPING_MSG "%ld %d is sleeping"
-# define THINKING_MSG "%ld %d is thinking"
-# define DIED_MSG "%ld %d died"
+# define TAKEN_FORK_MSG BLU"%ld %d has taken fork\n"
+# define EATING_MSG YEL"%ld %d is eating\n"
+# define SLEEPING_MSG WHT"%ld %d is sleeping\n"
+# define THINKING_MSG GRN"%ld %d is thinking\n"
+# define DIED_MSG RED"%ld %d died\n"
 
 //============================================================================//
 //                                  ENUMS                                     //
@@ -75,6 +76,7 @@ typedef struct s_philo
 {
 	int			id;
 	int			meals_eaten;
+	long		last_meal_time;
 	pthread_t	th;
 	t_mutex		*l_fork;
 	t_mutex		*r_fork;
@@ -88,8 +90,8 @@ typedef struct s_data
 	long		time_to_eat;
 	long		time_to_sleep;
 	long		time_to_die;
-	long		last_meal_time;
 	int			must_eat_count;
+	bool		simulation_active;
 	t_mutex		*forks;
 }	t_data;
 
@@ -104,13 +106,18 @@ void	ft_parse_and_set(t_data *data, char **argv);
 t_data	*ft_init_data(t_data *data);
 t_philo	*ft_init_philos(t_data *data, t_philo *philo);
 
+/* simulation.c */
+int		ft_start_simulation(t_data *data, t_philo *philo);
+
 /* utils.c */
 int		ft_is_space(char c);
 int		ft_is_num(char c);
 int		ft_strlen(char *str);
+void	ft_print_state(t_philo *philo, t_msg_state msg);
 
 /* time_utils.c */
 long	ft_get_curr_time(void);
+long	ft_time_since_start(t_philo *philo);
 
 /* clean.c */
 void	ft_cleanup(t_data *data, t_philo *philo);
