@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 13:47:23 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/19 17:24:13 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/20 10:23:26 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,14 @@ static void	*ft_routine();
 
 void	ft_init_structs(t_data *data, t_philo *philo)
 {
-	ft_init_philos(data, philo);
 	ft_init_data(data);
+	ft_init_philos(data, philo);
+}
+
+static void	ft_init_data(t_data *data)
+{
+	data->start_time = ft_get_curr_time();
+	data->forks = malloc(sizeof(t_mutex) * data->n_philos + 1);
 }
 
 static void	ft_init_philos(t_data *data, t_philo *philo)
@@ -38,13 +44,6 @@ static void	ft_init_philos(t_data *data, t_philo *philo)
 		i++;
 	}
 }
-
-static void	ft_init_data(t_data *data)
-{
-	data->start_time = ft_get_curr_time();
-	printf("%ld\n", data->start_time);
-}
-
 
 static void	*ft_routine()
 {
