@@ -27,14 +27,17 @@ OBJS        = $(SRCS:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
 #                              FLAGS & COMMANDS                                #
 #==============================================================================#
 
-CC          = gcc
-CFLAGS      = -Wall -Wextra -Werror
+CC          = cc
+CFLAGS      = -Wall -Wextra -Werror -g
 CFLAGS     += -pthread
 INC         = -I$(INC_PATH)
 
 RM          = rm -f
 AR          = ar rcs
 MKDIR_P     = mkdir -p
+V_ARGS      = --leak-check=full --show-leak-kinds=all
+
+
 
 #==============================================================================#
 #                                    RULES                                     #
@@ -48,6 +51,30 @@ $(NAME): $(OBJS)
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c $(HEADERS)
 	$(MKDIR_P) $(dir $@)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+#==============================================================================#
+#                                 TESTS W/ARGS                                 #
+#==============================================================================#
+
+test1:
+	valgrind $(V_ARGS) ./$(NAME) 1 800 200 200
+
+test2:
+	valgrind $(V_ARGS) ./$(NAME) 4 310 200 100
+
+test3:
+	valgrind $(V_ARGS) ./$(NAME) 200 180 60 60
+
+test4:
+	valgrind $(V_ARGS) ./$(NAME) 4 410 200 200
+
+test5:
+	valgrind $(V_ARGS) ./$(NAME) 5 800 200 200
+
+test6:
+	valgrind $(V_ARGS) ./$(NAME) 5 800 200 200 7
+
+#==============================================================================#
 
 clean:
 	$(RM) $(OBJS)

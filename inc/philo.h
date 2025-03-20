@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:28:41 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/19 17:24:05 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/20 12:05:49 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_philo
 	pthread_t	th;
 	t_mutex		*l_fork;
 	t_mutex		*r_fork;
+	t_data		*data;
 }	t_philo;
 
 typedef struct s_data
@@ -90,10 +91,11 @@ typedef struct s_data
 //============================================================================//
 
 /* parse.c */
-void	ft_validate_and_set(t_data *data, t_philo *philo, char **argv);
+void	ft_parse_and_set(t_data *data, char **argv);
 
 /* init.c */
-void	ft_init_structs(t_data *data, t_philo *philo);
+t_data	*ft_init_data(t_data *data);
+t_philo	*ft_init_philos(t_data *data, t_philo *philo);
 
 /* utils.c */
 int		ft_is_space(char c);
@@ -104,6 +106,8 @@ int		ft_strlen(char *str);
 long	ft_get_curr_time(void);
 
 /* clean.c */
+void	ft_cleanup(t_data *data, t_philo *philo);
 void	ft_print_err(char *str, int fd);
+void	ft_free(void *p);
 
 #endif

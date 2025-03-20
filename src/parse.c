@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:28:33 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/19 17:25:50 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/20 11:22:45 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ static long	ft_atol(char *str);
 // argv[4] = time_to_sleep
 // argv[5] = number_of_times_each_philosopher_must_eat
 
-void	ft_validate_and_set(t_data *data, t_philo *philo, char **argv)
+void	ft_parse_and_set(t_data *data, char **argv)
 {
-	(void)philo;
 	ft_validate_argv(argv);
 	data->n_philos = (int)ft_convert_into_nb(argv[1]);
 	data->time_to_die = ft_convert_into_nb(argv[2]);
