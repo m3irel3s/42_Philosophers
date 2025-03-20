@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:28:41 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/20 12:05:49 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/20 12:24:11 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@
 # define MAG "\e[0;35m"	// RGB(255, 0, 255)
 # define CYN "\e[0;36m"	// RGB(0, 255, 255)
 # define WHT "\e[0;37m"	// RGB(255, 255, 255)
+
+# define TAKEN_FORK_MSG "%ld %d has taken fork"
+# define EATING_MSG "%ld %d is eating"
+# define SLEEPING_MSG "%ld %d is sleeping"
+# define THINKING_MSG "%ld %d is thinking"
+# define DIED_MSG "%ld %d died"
 
 //============================================================================//
 //                                  ENUMS                                     //
@@ -82,6 +88,7 @@ typedef struct s_data
 	long		time_to_eat;
 	long		time_to_sleep;
 	long		time_to_die;
+	long		last_meal_time;
 	int			must_eat_count;
 	t_mutex		*forks;
 }	t_data;

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 13:47:23 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/20 11:26:24 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/20 12:26:13 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ t_philo	*ft_init_philos(t_data *data, t_philo *philo)
 	}
 	return (philo);
 }
+
+// philo thinks
+// philo sleeps
+// philo dies
 
 static void	*ft_routine()
 {

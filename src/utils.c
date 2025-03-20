@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:00:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/19 17:14:09 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/20 12:24:24 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,19 @@ int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+void	ft_print_state(t_philo *philo, t_msg_state msg)
+{
+	if (msg == TAKEN_FORK)
+		printf(TAKEN_FORK_MSG, ft_get_curr_time(), philo->id);
+	if (msg == EATING)
+		printf(EATING_MSG, ft_get_curr_time(), philo->id);
+	if (msg == SLEEPING)
+		printf(SLEEPING_MSG, ft_get_curr_time(), philo->id);
+	if (msg == THINKING)
+		printf(THINKING_MSG, ft_get_curr_time(), philo->id);
+	if (msg == DIED)
+		printf(DIED_MSG, ft_get_curr_time(), philo->id);
+	return ;
 }
