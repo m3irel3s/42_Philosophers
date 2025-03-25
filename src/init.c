@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 13:47:23 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/25 11:00:15 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:22:35 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ t_data	*ft_init_data(t_data *data)
 		i++;
 	}
 	data->start_time = ft_get_curr_time();
-	data->simulation_active = true;
+	data->simulation_state = OPEN;
+	pthread_mutex_init(&data->print_mutex, NULL);
+	pthread_mutex_init(&data->control_mutex, NULL);
 	return (data);
 }
 
@@ -41,6 +43,7 @@ t_philo	*ft_init_philos(t_data *data, t_philo *philo)
 		philo[i].l_fork = &data->forks[i];
 		philo[i].r_fork = &data->forks[(i + 1) % data->n_philos];
 		philo[i].data = data;
+		pthread_mutex_init(&philo[i].meal_mutex, NULL);
 		i++;
 	}
 	return (philo);

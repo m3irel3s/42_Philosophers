@@ -18,6 +18,7 @@ SRCS        = $(SRC_PATH)/main.c \
 			$(SRC_PATH)/parse.c \
 			$(SRC_PATH)/init.c \
 			$(SRC_PATH)/simulation.c \
+			$(SRC_PATH)/monitor.c \
 			$(SRC_PATH)/utils.c \
 			$(SRC_PATH)/time_utils.c \
 			$(SRC_PATH)/clean.c \

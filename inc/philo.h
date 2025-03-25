@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:28:41 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/25 11:39:07 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:38:24 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@
 //============================================================================//
 //                                  ENUMS                                     //
 //============================================================================//
+
+typedef enum e_bool
+{
+	OPEN,
+	DONE
+}	t_bool;
 
 typedef enum e_exit
 {
@@ -92,9 +98,11 @@ typedef struct s_data
 	long		time_to_sleep;
 	long		time_to_die;
 	int			must_eat_count;
-	bool		simulation_active;
+	bool		simulation_state;
+	pthread_t	monitor;
 	t_mutex		*forks;
 	t_mutex		print_mutex;
+	t_mutex		control_mutex;
 }	t_data;
 
 //============================================================================//
@@ -111,11 +119,15 @@ t_philo	*ft_init_philos(t_data *data, t_philo *philo);
 /* simulation.c */
 int		ft_start_simulation(t_data *data, t_philo *philo);
 
+/* monitor.c */
+void	ft_monitor(void *arg);
+
 /* utils.c */
 int		ft_is_space(char c);
 int		ft_is_num(char c);
 int		ft_strlen(char *str);
 void	ft_print_state(t_philo *philo, t_msg_state msg);
+void	ft_safe_sleep(long time, t_data *data);
 
 /* time_utils.c */
 long	ft_get_curr_time(void);

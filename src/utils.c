@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:00:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/25 11:50:50 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:34:01 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_safe_sleep(long time, t_data *data)
 	long	start;
 
 	start = ft_get_curr_time();
-	while (ft_get_curr_time() - start < time && data->simulation_active)
-		usleep(100);
+	while (ft_get_curr_time() - start < time && data->simulation_state)
+		usleep(1000);
 }
 
