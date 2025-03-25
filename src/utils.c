@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:00:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/20 14:57:26 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/25 11:50:50 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	ft_strlen(char *str)
 
 void	ft_print_state(t_philo *philo, t_msg_state msg)
 {
+	pthread_mutex_lock(&philo->data->print_mutex);
 	if (msg == TAKEN_FORK)
 		printf(TAKEN_FORK_MSG, ft_time_since_start(philo), philo->id);
 	if (msg == EATING)
@@ -44,6 +45,16 @@ void	ft_print_state(t_philo *philo, t_msg_state msg)
 		printf(THINKING_MSG, ft_time_since_start(philo), philo->id);
 	if (msg == DIED)
 		printf(DIED_MSG, ft_time_since_start(philo), philo->id);
+	pthread_mutex_unlock(&philo->data->print_mutex);
 	return ;
+}
+
+void	ft_safe_sleep(long time, t_data *data)
+{
+	long	start;
+
+	start = ft_get_curr_time();
+	while (ft_get_curr_time() - start < time && data->simulation_active)
+		usleep(100);
 }
 

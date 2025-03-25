@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:40:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/20 14:03:44 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/25 11:33:38 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int main(int argc, char **argv)
 {
-	t_data	*data;
-	t_philo	*philo;
+	t_data		*data;
+	t_philo		*philo;
 
 	data = NULL;
 	philo = NULL;

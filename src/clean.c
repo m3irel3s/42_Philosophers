@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 13:37:09 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/20 12:01:25 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/25 10:23:11 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ft_free(void *p)
 {
 	if (p)
 		free(p);
-	p = NULL;
 }
 
 void	ft_print_err(char *str, int fd)

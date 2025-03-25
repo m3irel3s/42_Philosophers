@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:28:41 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/20 17:00:01 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/25 11:39:07 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_philo
 	int			meals_eaten;
 	long		last_meal_time;
 	pthread_t	th;
+	t_mutex		meal_mutex;
 	t_mutex		*l_fork;
 	t_mutex		*r_fork;
 	t_data		*data;
@@ -93,6 +94,7 @@ typedef struct s_data
 	int			must_eat_count;
 	bool		simulation_active;
 	t_mutex		*forks;
+	t_mutex		print_mutex;
 }	t_data;
 
 //============================================================================//
