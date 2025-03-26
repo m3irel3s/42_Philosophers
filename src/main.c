@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:40:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/25 15:23:01 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:39:26 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,5 @@ int main(int argc, char **argv)
 	data = ft_init_data(data);
 	philo = ft_init_philos(data,philo);
 	ft_start_simulation(data, philo);
-	for (int i = 0; i < data->n_philos; i++)
-		pthread_join(philo[i].th, NULL);
 	ft_cleanup(data, philo);
 }

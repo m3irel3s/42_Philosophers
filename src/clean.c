@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 13:37:09 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/25 10:23:11 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:43:40 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,21 @@ void	ft_cleanup(t_data *data, t_philo *philo)
 {
 	int	i;
 
-	i = 0;
-	while (i < data->n_philos)
-		pthread_mutex_destroy(&data->forks[i++]);
+	i = -1;
+	while (++i < data->n_philos)
+		pthread_join(philo[i].th, NULL);
+	pthread_join(data->monitor, NULL);
+	i = -1;
+	while (++i < data->n_philos)
+		pthread_mutex_destroy(&data->forks[i]);
+	pthread_mutex_destroy(&data->print_mutex);
+	pthread_mutex_destroy(&data->control_mutex);
+	i = -1;
+	while (++i < data->n_philos)
+		pthread_mutex_destroy(&philo[i].meal_mutex);
 	ft_free(data->forks);
-	ft_free(data);
 	ft_free(philo);
+	ft_free(data);
 }
 
 void	ft_free(void *p)

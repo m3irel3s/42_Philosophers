@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:28:41 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/25 16:38:24 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:50:57 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@
 # define MAG "\e[0;35m"	// RGB(255, 0, 255)
 # define CYN "\e[0;36m"	// RGB(0, 255, 255)
 # define WHT "\e[0;37m"	// RGB(255, 255, 255)
+# define NC "\e[0m"
 
-# define TAKEN_FORK_MSG BLU"%ld %d has taken fork\n"
-# define EATING_MSG YEL"%ld %d is eating\n"
-# define SLEEPING_MSG WHT"%ld %d is sleeping\n"
-# define THINKING_MSG GRN"%ld %d is thinking\n"
-# define DIED_MSG RED"%ld %d died\n"
+# define TAKEN_FORK_MSG BLU "%ld %d has taken fork\n" NC
+# define EATING_MSG YEL "%ld %d is eating\n" NC
+# define SLEEPING_MSG WHT "%ld %d is sleeping\n" NC
+# define THINKING_MSG GRN "%ld %d is thinking\n" NC
+# define DIED_MSG RED "%ld %d died\n" NC
 
 //============================================================================//
 //                                  ENUMS                                     //
@@ -120,14 +121,15 @@ t_philo	*ft_init_philos(t_data *data, t_philo *philo);
 int		ft_start_simulation(t_data *data, t_philo *philo);
 
 /* monitor.c */
-void	ft_monitor(void *arg);
+void	*ft_monitor(void *arg);
 
 /* utils.c */
 int		ft_is_space(char c);
 int		ft_is_num(char c);
 int		ft_strlen(char *str);
 void	ft_print_state(t_philo *philo, t_msg_state msg);
-void	ft_safe_sleep(long time, t_data *data);
+int		ft_max(int a, int b);
+
 
 /* time_utils.c */
 long	ft_get_curr_time(void);

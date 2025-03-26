@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:00:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/25 16:34:01 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/26 16:37:32 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,26 @@ int	ft_strlen(char *str)
 void	ft_print_state(t_philo *philo, t_msg_state msg)
 {
 	pthread_mutex_lock(&philo->data->print_mutex);
-	if (msg == TAKEN_FORK)
-		printf(TAKEN_FORK_MSG, ft_time_since_start(philo), philo->id);
-	if (msg == EATING)
-		printf(EATING_MSG, ft_time_since_start(philo), philo->id);
-	if (msg == SLEEPING)
-		printf(SLEEPING_MSG, ft_time_since_start(philo), philo->id);
-	if (msg == THINKING)
-		printf(THINKING_MSG, ft_time_since_start(philo), philo->id);
-	if (msg == DIED)
-		printf(DIED_MSG, ft_time_since_start(philo), philo->id);
+	if (philo->data->simulation_state == OPEN)
+	{
+		if (msg == TAKEN_FORK)
+			printf(TAKEN_FORK_MSG, ft_time_since_start(philo), philo->id);
+		if (msg == EATING)
+			printf(EATING_MSG, ft_time_since_start(philo), philo->id);
+		if (msg == SLEEPING)
+			printf(SLEEPING_MSG, ft_time_since_start(philo), philo->id);
+		if (msg == THINKING)
+			printf(THINKING_MSG, ft_time_since_start(philo), philo->id);
+		if (msg == DIED)
+			printf(DIED_MSG, ft_time_since_start(philo), philo->id);
+	}
 	pthread_mutex_unlock(&philo->data->print_mutex);
 	return ;
 }
 
-void	ft_safe_sleep(long time, t_data *data)
+int	ft_max(int num1, int num2)
 {
-	long	start;
-
-	start = ft_get_curr_time();
-	while (ft_get_curr_time() - start < time && data->simulation_state)
-		usleep(1000);
+	if (num1 > num2)
+		return (num1);
+	return (num2);
 }
-
