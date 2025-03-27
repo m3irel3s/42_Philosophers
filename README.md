@@ -1,4 +1,5 @@
 ## 🏛️ **42 Philosophers**
+![image](https://github.com/user-attachments/assets/accd167b-0c39-454c-854b-fcad4a56e969)
 ## 🔍 Overview
 
 42 Philosophers is an implementation of the Dining Philosophers Problem, a classical problem in concurrency and synchronization. The problem demonstrates the challenges of resource sharing, deadlock avoidance, and thread synchronization using multiple philosophers who must alternate between eating, sleeping and thinking while sharing limited forks (resources).
@@ -15,18 +16,8 @@ The goal is to efficiently manage concurrency, ensuring that all philosophers ge
 
 ## ⚙️ Functionality
 
-1️⃣ Initialize Philosophers – Creates a number of philosopher threads based on input parameters.
-
-2️⃣ Fork Management – Each philosopher must pick up two forks (mutexes) to eat, ensuring safe access to shared resources.
-
-3️⃣ Thinking, Eating, Sleeping Cycle – Each philosopher continuously:
-
-    Thinks (waiting for forks to be available).
-
-    Eats (grabs forks, eats for a set duration).
-
-    Sleeps (releases forks and waits before thinking again).
-
-4️⃣ Synchronization Mechanism – Uses mutexes to lock forks and prevent multiple philosophers from accessing the same fork simultaneously.
-
-5️⃣ Death Detection – If a philosopher does not eat within a defined time, the simulation detects and reports a dead philosopher.
+- Initialize Philosophers – Creates a number of philosopher threads based on input parameters.
+- Fork Management – Each philosopher must pick up two forks (mutexes) to eat, ensuring safe access to shared resources.
+- Thinking, Eating, Sleeping Cycle
+- Synchronization Mechanism – Uses mutexes to lock forks and prevent multiple philosophers from accessing the same fork simultaneously.
+- Death Detection – If a philosopher does not eat within a defined time, the simulation detects and reports a dead philosopher.
