@@ -18,6 +18,7 @@ SRCS        = $(SRC_PATH)/main.c \
 			$(SRC_PATH)/parse.c \
 			$(SRC_PATH)/parse2.c \
 			$(SRC_PATH)/init.c \
+			$(SRC_PATH)/single_thread.c \
 			$(SRC_PATH)/simulation.c \
 			$(SRC_PATH)/monitor.c \
 			$(SRC_PATH)/utils.c \
@@ -51,7 +52,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJS)
 
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c $(HEADERS)
-	$(MKDIR_P) $(dir $@)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 #==============================================================================#

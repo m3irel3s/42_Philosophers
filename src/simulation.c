@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 13:49:15 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/27 13:08:15 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:12:12 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ int	ft_start_simulation(t_data *data, t_philo *philo)
 			return (FAILURE);
 	}
 	pthread_create(&data->monitor, NULL, ft_monitor, philo);
+	i = -1;
+	while (++i < data->n_philos)
+		pthread_join(philo[i].th, NULL);
+	pthread_join(data->monitor, NULL);
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:28:41 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/27 12:05:08 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:20:05 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 # define DIED_MSG "%ld %d died\n"
 
 # define ERROR -1
+# define TRUE 1
+# define FALSE 0
 
 //============================================================================//
 //                                  ENUMS                                     //
@@ -54,7 +56,7 @@
 typedef enum e_bool
 {
 	OPEN,
-	DONE
+	DONE,
 }	t_bool;
 
 typedef enum e_exit
@@ -101,7 +103,7 @@ typedef struct s_data
 	long		time_to_sleep;
 	long		time_to_die;
 	int			must_eat_count;
-	bool		simulation_state;
+	int			simulation_state;
 	pthread_t	monitor;
 	t_mutex		*forks;
 	t_mutex		print_mutex;
@@ -121,6 +123,9 @@ int		ft_check_valid_number(char *str);
 /* init.c */
 t_data	*ft_init_data(t_data *data);
 t_philo	*ft_init_philos(t_data *data, t_philo *philo);
+
+/* single_thread.c */
+int		ft_single_thread(t_philo *philo);
 
 /* simulation.c */
 int		ft_start_simulation(t_data *data, t_philo *philo);
