@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:28:41 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/26 15:50:57 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/27 12:05:08 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@
 # define WHT "\e[0;37m"	// RGB(255, 255, 255)
 # define NC "\e[0m"
 
-# define TAKEN_FORK_MSG BLU "%ld %d has taken fork\n" NC
-# define EATING_MSG YEL "%ld %d is eating\n" NC
-# define SLEEPING_MSG WHT "%ld %d is sleeping\n" NC
-# define THINKING_MSG GRN "%ld %d is thinking\n" NC
-# define DIED_MSG RED "%ld %d died\n" NC
+# define TAKEN_FORK_MSG "%ld %d has taken fork\n"
+# define EATING_MSG "%ld %d is eating\n"
+# define SLEEPING_MSG "%ld %d is sleeping\n"
+# define THINKING_MSG "%ld %d is thinking\n"
+# define DIED_MSG "%ld %d died\n"
+
+# define ERROR -1
 
 //============================================================================//
 //                                  ENUMS                                     //
@@ -103,7 +105,6 @@ typedef struct s_data
 	pthread_t	monitor;
 	t_mutex		*forks;
 	t_mutex		print_mutex;
-	t_mutex		control_mutex;
 }	t_data;
 
 //============================================================================//
@@ -111,7 +112,11 @@ typedef struct s_data
 //============================================================================//
 
 /* parse.c */
-void	ft_parse_and_set(t_data *data, char **argv);
+int		ft_parse_and_set(t_data *data, char **argv);
+
+/* parse2.c */
+long	ft_atol(char *str);
+int		ft_check_valid_number(char *str);
 
 /* init.c */
 t_data	*ft_init_data(t_data *data);
@@ -128,12 +133,10 @@ int		ft_is_space(char c);
 int		ft_is_num(char c);
 int		ft_strlen(char *str);
 void	ft_print_state(t_philo *philo, t_msg_state msg);
-int		ft_max(int a, int b);
-
 
 /* time_utils.c */
 long	ft_get_curr_time(void);
-long	ft_time_since_start(t_philo *philo);
+long	ft_time_passed(t_philo *philo);
 
 /* clean.c */
 void	ft_cleanup(t_data *data, t_philo *philo);

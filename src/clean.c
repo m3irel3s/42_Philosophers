@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 13:37:09 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/26 15:43:40 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/27 11:30:17 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_cleanup(t_data *data, t_philo *philo)
 	while (++i < data->n_philos)
 		pthread_mutex_destroy(&data->forks[i]);
 	pthread_mutex_destroy(&data->print_mutex);
-	pthread_mutex_destroy(&data->control_mutex);
 	i = -1;
 	while (++i < data->n_philos)
 		pthread_mutex_destroy(&philo[i].meal_mutex);

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:37:33 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/26 16:59:07 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:06:02 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void	*ft_monitor(void *arg)
 {
-	t_philo	*philos = (t_philo *)arg;
+	t_philo	*philos;
 	t_data	*data;
 	int		i;
 	int		full_philos;
 
+	philos = (t_philo *)arg;
 	data = philos->data;
 	while (data->simulation_state == OPEN)
 	{
@@ -45,9 +46,9 @@ void	*ft_monitor(void *arg)
 		// If all philosophers have eaten enough times, stop the simulation
 		if (data->must_eat_count > 0 && full_philos == data->n_philos)
 		{
-			pthread_mutex_lock(&philos[i - 1].data->print_mutex);
+			pthread_mutex_lock(&philos->data->print_mutex);
 			data->simulation_state = DONE;
-			pthread_mutex_unlock(&philos[i - 1].data->print_mutex);
+			pthread_mutex_unlock(&philos->data->print_mutex);
 			return (NULL);
 		}
 		usleep(1000);

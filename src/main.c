@@ -6,13 +6,13 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:40:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/26 15:39:26 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/27 11:35:20 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data		*data;
 	t_philo		*philo;
@@ -22,9 +22,11 @@ int main(int argc, char **argv)
 	if (argc != 5 && argc != 6)
 		return (ft_print_err("Invalid number of arguments\n", 2), FAILURE);
 	data = malloc(sizeof(t_data));
-	ft_parse_and_set(data, argv);
+	if (ft_parse_and_set(data, argv) != SUCCESS)
+		return (ft_free(data), FAILURE);
 	data = ft_init_data(data);
-	philo = ft_init_philos(data,philo);
+	philo = ft_init_philos(data, philo);
 	ft_start_simulation(data, philo);
 	ft_cleanup(data, philo);
+	return (SUCCESS);
 }

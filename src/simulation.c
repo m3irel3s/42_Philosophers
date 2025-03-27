@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 13:49:15 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/26 17:11:02 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:08:15 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,7 @@
 static void	*ft_routine(void *arg);
 static void	ft_eat(t_philo *philo);
 static void	ft_give_forks(t_philo *philo);
-
-// philo thinks
-// philo eats
-// philo sleeps
-// philo dies
-
-// [TRY FORKS] => [EAT] => [RELEASE FORKS] => [SLEEP] => [THINK] => Repeat
-// create a thread to watch the other philos => monitor thread
-// will check for time since last_meal > time_to_die 
-// if all philos ate the req meals
+static int	ft_verify_state(t_data *data);
 
 int	ft_start_simulation(t_data *data, t_philo *philo)
 {
@@ -33,12 +24,14 @@ int	ft_start_simulation(t_data *data, t_philo *philo)
 	i = -1;
 	while (++i < data->n_philos)
 	{
-		if (pthread_create(&philo[i].th, NULL, ft_routine, &philo[i]) != SUCCESS)
+		if (pthread_create(&philo[i].th, NULL, ft_routine,
+				&philo[i]) != SUCCESS)
 			return (FAILURE);
 	}
 	pthread_create(&data->monitor, NULL, ft_monitor, philo);
 	return (SUCCESS);
 }
+
 static void	*ft_routine(void *arg)
 {
 	t_philo	*philo;
@@ -49,13 +42,8 @@ static void	*ft_routine(void *arg)
 	data = philo->data;
 	while (1)
 	{
-		pthread_mutex_lock(&data->print_mutex);
-		if (data->simulation_state != OPEN)
-		{
-			pthread_mutex_unlock(&data->print_mutex);
+		if (ft_verify_state(data) == FAILURE)
 			break ;
-		}
-		pthread_mutex_unlock(&data->print_mutex);
 		ft_give_forks(philo);
 		ft_eat(philo);
 		usleep(philo->data->time_to_eat * 1000);
@@ -63,11 +51,24 @@ static void	*ft_routine(void *arg)
 		pthread_mutex_unlock(philo->r_fork);
 		ft_print_state(philo, SLEEPING);
 		usleep(philo->data->time_to_sleep * 1000);
-		time_to_think = ft_max(0, (data->time_to_die - (data->time_to_eat + data->time_to_sleep)) / 2);
+		time_to_think = (data->time_to_die
+				- (data->time_to_eat + data->time_to_sleep)) / 2;
 		ft_print_state(philo, THINKING);
 		usleep(time_to_think * 1000);
 	}
 	return (NULL);
+}
+
+static int	ft_verify_state(t_data *data)
+{
+	pthread_mutex_lock(&data->print_mutex);
+	if (data->simulation_state != OPEN)
+	{
+		pthread_mutex_unlock(&data->print_mutex);
+		return (FAILURE);
+	}
+	pthread_mutex_unlock(&data->print_mutex);
+	return (SUCCESS);
 }
 
 static void	ft_give_forks(t_philo *philo)

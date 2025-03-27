@@ -16,6 +16,7 @@ HEADERS     = $(addprefix $(INC_PATH)/, philo.h)
 
 SRCS        = $(SRC_PATH)/main.c \
 			$(SRC_PATH)/parse.c \
+			$(SRC_PATH)/parse2.c \
 			$(SRC_PATH)/init.c \
 			$(SRC_PATH)/simulation.c \
 			$(SRC_PATH)/monitor.c \
@@ -38,8 +39,7 @@ RM          = rm -f
 AR          = ar rcs
 MKDIR_P     = mkdir -p
 V_ARGS      = --leak-check=full --show-leak-kinds=all
-
-
+# V_ARGS      = --tool=helgrind
 
 #==============================================================================#
 #                                    RULES                                     #
