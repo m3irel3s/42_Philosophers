@@ -1,5 +1,5 @@
 ## 🏛️ **42 Philosophers**
-![image](https://github.com/user-attachments/assets/accd167b-0c39-454c-854b-fcad4a56e969)
+![image](https://github.com/user-attachments/assets/7e48f70f-ba45-4a92-a68a-db6380603a9c)
 ## 🔍 Overview
 
 42 Philosophers is an implementation of the Dining Philosophers Problem, a classical problem in concurrency and synchronization. The problem demonstrates the challenges of resource sharing, deadlock avoidance, and thread synchronization using multiple philosophers who must alternate between eating, sleeping and thinking while sharing limited forks (resources).
