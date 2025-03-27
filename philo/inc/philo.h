@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:28:41 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/27 14:20:05 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/27 23:05:33 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ int		ft_is_space(char c);
 int		ft_is_num(char c);
 int		ft_strlen(char *str);
 void	ft_print_state(t_philo *philo, t_msg_state msg);
+int		ft_min(int num1, int num2);
 
 /* time_utils.c */
 long	ft_get_curr_time(void);

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 12:00:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/27 15:42:26 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/27 23:05:34 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ int	ft_is_space(char c)
 int	ft_is_num(char c)
 {
 	return (c >= 48 && c <= 57);
+}
+
+int	ft_min(int num1, int num2)
+{
+	if (num1 < num2)
+		return (num1);
+	return (num2);
 }
 
 int	ft_strlen(char *str)

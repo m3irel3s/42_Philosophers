@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 13:49:15 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/27 15:56:46 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/27 23:07:35 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static void	*ft_routine(void *arg)
 		usleep(philo->data->time_to_sleep * 1000);
 		if (ft_get_curr_time() - philo->last_meal_time > data->time_to_die)
 			return (NULL);
-		time_to_think = (data->time_to_die
-				- (data->time_to_eat + data->time_to_sleep)) / 2;
+		time_to_think = ft_min(200, (data->time_to_die
+					- (data->time_to_eat + data->time_to_sleep)) / 2);
 		ft_print_state(philo, THINKING);
 		usleep(time_to_think * 1000);
 	}
